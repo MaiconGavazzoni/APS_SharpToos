@@ -1,0 +1,19 @@
+.tabela {
+  height: 500px;
+  background-color: #18bc9c!important;
+}
+
+.table-responsive {
+  margin-top: 100px;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sobre.h1 {
+  padding-top: 80px;
+  text-align: center;
+  width: 700px;
+  margin: auto;
+}
+
