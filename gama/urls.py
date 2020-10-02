@@ -24,6 +24,7 @@ app_name = 'gama'
 urlpatterns = [
     path('', include('gama.core.urls', namespace='core')),
     path('', include('gama.accounts.urls', namespace='accounts')),
+    path('', include('gama.sharp.urls', namespace='sharp')),
     path('admin/', admin.site.urls),
 ]
 

@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% for itens in item %}
+<tr >
 
-</body>
-</html>
+    <td>{{ itens.tools }}</td>
+    <td>{{ itens.quantity }}</td>
+    <td>
+      <button type="button"
+              class="btn btn-warning btn-sm js-update-book"
+              data-url="{% url 'sharp:list_update' itens.pk %}">
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+      </button>
+        <button type="button"
+              class="btn btn-danger btn-sm js-delete-book"
+              data-url="{% url 'sharp:list_delete' itens.id %}">
+        <span class="glyphicon glyphicon-trash"></span> Delete
+      </button>
+
+    </td>
+
+</tr>
+{% empty %}
+  <tr>
+    <td colspan="8" class="text-center bg-warning">Não contém Itens</td>
+  </tr>
+{% endfor %}
+
+
+
+

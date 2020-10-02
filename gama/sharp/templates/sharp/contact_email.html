@@ -1,0 +1,29 @@
+<p><strong>Nome</strong>: {{ name }}</p>
+<p><strong>E-mail</strong>: {{ email }}</p>
+{{ message|linebreaks }}
+
+
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Itens Lista</th>
+        <th>Quantidade</th>
+        <th>Código</th>
+        <th>Autor</th>
+
+    </tr>
+    </thead>
+    <tbody>
+{% for itens in item %}
+    <tr>
+
+        <td>{{ itens.tools }}</td>
+        <td align="center">{{ itens.quantity }}</td>
+        <td align="center">{{ itens.tools.stock_code }}</td>
+        <td>{{ itens.sharpen.author }}</td>
+
+{% endfor %}
+    </tbody>
+
+</table>

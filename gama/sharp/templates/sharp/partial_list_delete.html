@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load widget_tweaks %}
+
+<form method="post" action="{% url 'sharp:list_delete' item.id %}" class="js-book-delete-form"><!-- ação no url e classe js para conectar com o JavaScript-->
+  {% csrf_token %}
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Deletar Item</h4>
+  </div>
+  <div class="modal-body">
+
+    <h4>Você realmente quer deletar o item {{ item.tools }}</h4>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary">Deletar Item</button>
+  </div>
+</form>

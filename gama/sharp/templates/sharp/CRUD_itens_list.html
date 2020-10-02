@@ -1,10 +1,113 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "core/base.html" %}
+
+
+
+{% block content %}
+{% load widget_tweaks %}
+
+    <div  class="tabela">
+        <section>
+
+
+            <div class="table-responsive">
+                <button type="button"  class="btn btn-warning btn-sm js-create-book"
+                        data-url="{% url 'sharp:create_list' %}">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Novo Item
+                </button>
+                <button type="button"  class="btn btn-warning btn-sm js-create-book">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <a class="d-block mx-auto portfolio-item" data-toggle="modal" href="#portfolio-modal-2"><font color="black"> Enviar Lista por Email</font></a>
+                </button>
+
+                <!-- Form de email -->
+
+
+
+                <!-- aqui certo-->
+                <table class="table table-striped table-hover table-dark" id="book-table">
+                    <thead>
+                        <tr>
+                            <th>Itens Lista</th>
+                            <th>Quantidade</th>
+                            <th><a href="{% url 'sharp:list' %}"> << Retornar as listas</a></th>
+                            <th>
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                     {% include 'sharp/partial_list.html' %}
+
+                    </tbody>
+
+                </table>
+            </div>
+        </section>
+    </div>
+
+<div class="modal fade" id="modal-book">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+
+
+    <div class="modal text-center" role="dialog" tabindex="-1" id="portfolio-modal-2">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <div class="container text-center">
+                        <h3>Enviar email da lista </h3>
+                        <div class="row">
+
+                            <!--aqui vai o form-->
+                            <form method="post" action="">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer pb-5"><a class="btn btn-primary btn-lg mx-auto rounded-pill portfolio-modal-dismiss" role="button" ><i class="fa fa-close"></i>&nbsp;<button type="submit">Enviar</button></a></div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Localização</h4>
+                    <p>FTSG<br>Faculdade de Técnologia</p>
+                </div>
+                <div class="col-md-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase">pela Web</h4>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a class="btn btn-outline-light btn-social text-center rounded-circle" role="button" href="#"><i class="fa fa-twitter-square fa-fw"></i></a></li>
+                        <li class="list-inline-item"><a class="btn btn-outline-light btn-social text-center rounded-circle" role="button" href="#"><i class="fa fa-linkedin fa-fw"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="text-uppercase mb-4">Desenvolvedor</h4>
+                    <p class="lead mb-0"><span>Maicon Gavazzoni - Análise e Desenvolvimento de Sistemas</span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright py-4 text-center text-white">
+        <div class="container"><small>Copyright ©&nbsp;Brand 2019</small></div>
+    </div>
+
+
+
+
+
+
+{% endblock %}
+
+
+

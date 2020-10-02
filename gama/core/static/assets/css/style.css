@@ -1,13 +1,19 @@
+.corpo {
+  height: 100%;
+
+}
 .tabela {
-  height: 500px;
+  height: 100%;
   background-color: #18bc9c!important;
 }
 
 .table-responsive {
   margin-top: 100px;
   width: 800px;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
+
 }
 
 .sobre.h1 {
@@ -16,4 +22,9 @@
   width: 700px;
   margin: auto;
 }
+
+
+
+
+
 

@@ -1,10 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "core/base.html" %}
+
+{% block content %}
+
+    <div  class="tabela">
+        <section>
+
+            <div class="table-responsive">
+                <p>
+                    <button type="button" class="btn btn-primary js-create-book">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Novo Item
+                    </button>
+                </p>
+                <table class="table table-striped table-hover table-dark">
+                    <thead>
+                        <tr>
+                            <th>Itens Lista</th>
+                            <th>Quantidade</th>
+                            <th>PK</th>
+                            <th><a href="{% url 'sharp:list' %}"> << Retornar</a></th>
+                            <th><a class="d-block mx-auto portfolio-item" data-toggle="modal" href="#portfolio-modal-2"> add Item</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for itens in item %}
+                        <tr >
+
+                            <td>{{ itens.tools }}</td>
+                            <td>{{ itens.quantity }}</td>
+                            <td>{{ itens.pk }}</td>
+                            <td><button id="id" data-ferramenta="{{ itens.pk }}" class="btn btn-warning btnFerramenta" type="submit" data-toggle="modal" data-target="#portfolio-modal-3">Editar</button></td> <!--passar outro modal para abrir outro form -->
+                            <!--td><button id="id" data-ferramenta='.$nId.' class="btn btn-warning btnFerramenta" type="submit" data-toggle="modal" data-target="#exampleModal">Retirar item</button></td-->
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+<!--Modal add Item-->
+<div class="modal text-center" role="dialog" tabindex="-1" id="portfolio-modal-2">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <div class="container text-center">
+                        <div class="row">
+                            <!--aqui vai o form-->
+                            <form method="post" action="">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit">Inserir</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer pb-5"><a class="btn btn-primary btn-lg mx-auto rounded-pill portfolio-modal-dismiss" role="button" href="#"><i class="fa fa-close"></i>&nbsp;Close Project</a></div>
+            </div>
+        </div>
+    </div>
+
+<!--Modal Editar-->
+<div class="modal text-center" role="dialog" tabindex="-1" id="portfolio-modal-3">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <div class="container text-center">
+                        <div class="row">
+                            <!--aqui vai o form-->
+
+
+                            <!-- Corpo Modal -->
+                <div class="modal-body">
+                <form autocomplete="off" method="post" class="form-inline" action="lista/idFerramenta" method="post">
+
+                    <!-- Passa o Id da ferramenta para o modal fica invisivel com json -->
+                  <label for="idFerramenta">
+                  <input type="hidden"  id="ferramenta" value="" name="idFerramenta"/></label><br>
+
+
+				<label for="retira">
+                Quantidade:
+    			<input type="text" name="retira"/></label><br>
+                    <button class="btn btn-primary active" type="submit">Confirmar</button>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer pb-5"><a class="btn btn-primary btn-lg mx-auto rounded-pill portfolio-modal-dismiss" role="button" href="#"><i class="fa fa-close"></i>&nbsp;Close Project</a></div>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+        $('.btnFerramenta').click(function(){
+
+            var codigo = $(this).data('ferramenta');
+            $('#ferramenta').val(codigo).trigger('change');
+        });
+</script>
+
+{% endblock %}
+<!--
+<button id="id" data-ferramenta="48" class="btn btn-warning btnFerramenta" type="submit" data-toggle="modal" data-target="#exampleModal">Retirar item</button>
+<input type="hidden" id="ferramenta" value="48" name="idFerramenta">
+
+
+http://localhost:4000/codigo/estoque.php -->

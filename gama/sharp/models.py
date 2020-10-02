@@ -38,7 +38,7 @@ class ListSharpen(models.Model):
         on_delete=models.CASCADE
     )
     sharpen = models.ForeignKey(Sharpen, related_name='Lista',blank=False, on_delete=models.CASCADE)
-    quantity = models.IntegerField('Quantidade', blank=False, default=1)
+    quantity = models.IntegerField('Quantidade', blank=False)
 
 
 
